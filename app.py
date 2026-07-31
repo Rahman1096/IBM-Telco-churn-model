@@ -364,7 +364,7 @@ if predict:
     fig = go.Figure(go.Indicator(
         mode="gauge+number",
         value=probability * 100,
-        number={"suffix": "%", "font": {"size": 48, "color": "#1e293b"}},
+        number={"suffix": "%", "font": {"size": 38, "color": "#1e293b"}},
         gauge={
             "axis": {
                 "range": [0, 100],
@@ -389,8 +389,8 @@ if predict:
     ))
 
     fig.update_layout(
-        height=280,
-        margin=dict(l=30, r=30, t=30, b=10),
+        height=320,
+        margin=dict(l=30, r=30, t=50, b=40),
         paper_bgcolor="rgba(0,0,0,0)",
         plot_bgcolor="rgba(0,0,0,0)",
         font={"color": "#1e293b"}
