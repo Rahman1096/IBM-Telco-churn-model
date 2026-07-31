@@ -420,57 +420,6 @@ if predict:
         </div>
         """, unsafe_allow_html=True)
 
-    # ======================================
-    # FEATURE IMPORTANCE CHART
-    # ======================================
-
-    st.markdown('<div class="section-header"><h3>🔬 Feature Importance</h3></div>', unsafe_allow_html=True)
-
-    try:
-        importances = model.feature_importances_
-        n_features = min(len(importances), len(FEATURE_NAMES))
-        feature_names = FEATURE_NAMES[:n_features]
-        imp_values = importances[:n_features]
-
-        # Get top 10
-        top_indices = np.argsort(imp_values)[-10:]
-        top_names = [feature_names[i] for i in top_indices]
-        top_values = [imp_values[i] for i in top_indices]
-
-        fig_imp = go.Figure(go.Bar(
-            x=top_values,
-            y=top_names,
-            orientation='h',
-            marker=dict(
-                color=top_values,
-                colorscale=[[0, '#3b82f6'], [0.5, '#8b5cf6'], [1, '#ef4444']],
-                line=dict(width=0)
-            )
-        ))
-
-        fig_imp.update_layout(
-            height=380,
-            margin=dict(l=10, r=30, t=10, b=10),
-            paper_bgcolor="rgba(0,0,0,0)",
-            plot_bgcolor="rgba(0,0,0,0)",
-            font={"color": "#334155", "size": 12},
-            xaxis=dict(
-                showgrid=True,
-                gridcolor="rgba(0,0,0,0.06)",
-                title="Importance Score",
-                titlefont={"size": 13, "color": "#475569"}
-            ),
-            yaxis=dict(
-                showgrid=False,
-                tickfont={"size": 12, "color": "#334155"}
-            ),
-            bargap=0.3
-        )
-
-        st.plotly_chart(fig_imp, use_container_width=True)
-
-    except Exception:
-        st.info("Feature importance visualization not available for this model type.")
 
     # ======================================
     # BUSINESS RECOMMENDATION
