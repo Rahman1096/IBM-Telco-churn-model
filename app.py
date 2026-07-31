@@ -124,8 +124,9 @@ with st.sidebar.expander("💳 Billing Information", expanded=True):
 
     total = st.number_input(
         "Total Charges ($)",
-        0.0, 10000.0, 840.0,
-        help="Total amount charged over the entire tenure"
+        value=float(tenure * monthly),
+        disabled=True,
+        help="Automatically calculated: Tenure × Monthly Charges"
     )
 
 # --- Phone ---
